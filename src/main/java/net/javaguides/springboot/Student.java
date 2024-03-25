@@ -2,6 +2,8 @@ package net.javaguides.springboot;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,6 +50,7 @@ public class Student {
 	@JoinColumn(
 			name = "school_id"
 	)
+	@JsonBackReference
 	private School school;
 	
 	public StudentProfile getStudentProfile() {
