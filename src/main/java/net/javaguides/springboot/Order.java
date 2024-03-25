@@ -1,6 +1,9 @@
 package net.javaguides.springboot;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Order {
+	@JsonProperty("c-name")
 	private String customerName;
 	public String getCustomerName() {
 		return customerName;
@@ -26,7 +29,10 @@ public class Order {
 		this.quantity = quantity;
 	}
 
+	@JsonProperty("p-name")
 	private String productName;
+	
+	@JsonProperty("quantity")
 	private String quantity;
 	
 	@Override
