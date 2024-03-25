@@ -34,6 +34,10 @@ public class Student {
 	//@Column(updatable=false)
 	//private int created_date;
 
+	public Student() {
+		
+	}
+	
 	public Student(Integer id, String firstName, String lastName, String email, int age) {
 		super();
 		this.id = id;

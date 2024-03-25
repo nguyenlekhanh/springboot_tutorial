@@ -1,5 +1,7 @@
 package net.javaguides.springboot;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +27,19 @@ public class FirstController {
 	) {
 		
 		return repository.save(student);
+	}
+	
+	@GetMapping("/student/{student-id}")
+	public Student findStudentById(
+			@PathVariable("student-id") Integer id
+	) {
 		
-		//return "Hello from my first controller";
+		return repository.findById(id).orElse(null);
+	}
+	
+	@GetMapping("/students")
+	public List<Student> findAllStudent() {
+		
+		return repository.findAll();
 	}
 }
