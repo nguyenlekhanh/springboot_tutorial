@@ -11,10 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class FirstController {
+
+
+	private final StudentRepository repository;
 	
-	@GetMapping("/hello")
-	@ResponseStatus(HttpStatus.ACCEPTED)
-	public String sayHello() {
-		return "Hello from my first controller";
+	public FirstController(StudentRepository repository) {
+		this.repository = repository;
+	}
+
+	@PostMapping("/student")
+	public Student post(
+			@RequestBody Student student
+	) {
+		
+		return repository.save(student);
+		
+		//return "Hello from my first controller";
 	}
 }

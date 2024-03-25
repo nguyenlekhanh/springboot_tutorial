@@ -1,5 +1,7 @@
 package net.javaguides.springboot;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,19 +10,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "T_STUDENT")
+@Table(name = "student")
 public class Student {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column(
-			name="c_fname",
+			name="firstName",
 			length=20
 	)
 	private String firstName;
-	@Column
+	@Column(name="lastName")
 	private String lastName;
 	
 	@Column(unique=true)
@@ -29,8 +31,8 @@ public class Student {
 	@Column
 	private int age;
 	
-	@Column(updatable=false)
-	private int created_date;
+	//@Column(updatable=false)
+	//private int created_date;
 
 	public Student(Integer id, String firstName, String lastName, String email, int age) {
 		super();
