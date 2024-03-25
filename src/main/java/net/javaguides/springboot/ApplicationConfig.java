@@ -19,7 +19,6 @@ public class ApplicationConfig {
 	}
 	
 	@Bean
-	@Primary
 	public MyFirstClass myThirdBean() {
 		return new MyFirstClass("Third Bean");
 	}
