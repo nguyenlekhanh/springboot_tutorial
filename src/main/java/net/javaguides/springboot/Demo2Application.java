@@ -12,6 +12,7 @@ public class Demo2Application {
 		//MyFirstClass myFirstClass = ctx.getBean("mybean", MyFirstClass.class);'
 		MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
 		System.out.println(myFirstService.tellAStory());
+		System.out.println(myFirstService.getJavaVersion());
 		SpringApplication.run(Demo2Application.class, args);
 	}
 
