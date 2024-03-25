@@ -17,27 +17,4 @@ public class FirstController {
 	public String sayHello() {
 		return "Hello from my first controller";
 	}
-	
-	@PostMapping("/post")
-	public String post(
-			@RequestBody Order order
-	) {
-		return "Hello from post: " + order.toString();
-	}
-	
-	@GetMapping("/hello/{user-name}")
-	public String pathVar(
-			@PathVariable("user-name") String userName
-	) {
-		return "my value = " + userName;
-	}
-
-	//hello?user-name=value&user-lastname=value
-	@GetMapping("/hello")
-	public String paramVar(
-			@RequestParam("user-name") String userName,
-			@RequestParam("user-lastname") String userLastName
-	) {
-		return "my value = " + userName;
-	}
 }
