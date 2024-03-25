@@ -27,6 +27,14 @@ public class MyFirstService {
 		return environment.getProperty("java.version");
 	}
 	
+	public String getOsName() {
+		return environment.getProperty("os.name");
+	}
+	
+	public String readProp() {
+		return environment.getProperty("my.custom.property");
+	}
+	
 	@Autowired
 	public void setEnvironment(Environment environment) {
 		this.environment = environment;
