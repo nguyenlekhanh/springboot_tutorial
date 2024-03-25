@@ -18,6 +18,8 @@ public class Demo2Application {
 		
 		System.out.println(myFirstService.getCustomerProperty());
 		System.out.println(myFirstService.getCustomerPropertyInt());
+		System.out.println(myFirstService.getMyCustomProperty1());
+		System.out.println(myFirstService.getMyCustomProperty2());
 		SpringApplication.run(Demo2Application.class, args);
 	}
 

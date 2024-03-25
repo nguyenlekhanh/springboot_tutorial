@@ -3,10 +3,16 @@ package net.javaguides.springboot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 @Service
+@PropertySources({
+	@PropertySource("classpath:custom.properties"),
+	@PropertySource("classpath:custom2.properties")
+})
 public class MyFirstService {
 
 	private MyFirstClass myFirstClass;
@@ -18,6 +24,12 @@ public class MyFirstService {
 	
 	@Value("${my.custom.property.int}")
 	private Integer customerPropertyInt;
+	
+	@Value("${my.custom1.property}")
+	private String myCustomProperty1;
+	
+	@Value("${my.custom2.property}")
+	private String myCustomProperty2;
 	
 	@Autowired
 	public void injectDependencies (
@@ -53,5 +65,13 @@ public class MyFirstService {
 
 	public Integer getCustomerPropertyInt() {
 		return customerPropertyInt;
+	}
+
+	public String getMyCustomProperty1() {
+		return myCustomProperty1;
+	}
+
+	public String getMyCustomProperty2() {
+		return myCustomProperty2;
 	}
 }
