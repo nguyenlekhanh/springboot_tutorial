@@ -2,6 +2,7 @@ package net.javaguides.springboot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,13 @@ public class MyFirstService {
 
 	private MyFirstClass myFirstClass;
 	
-	private Environment environment; 
+	private Environment environment;
+	
+	@Value("${my.custom.property}")
+	private String customerProperty;
+	
+	@Value("${my.custom.property.int}")
+	private Integer customerPropertyInt;
 	
 	@Autowired
 	public void injectDependencies (
@@ -38,5 +45,13 @@ public class MyFirstService {
 	@Autowired
 	public void setEnvironment(Environment environment) {
 		this.environment = environment;
+	}
+
+	public String getCustomerProperty() {
+		return customerProperty;
+	}
+
+	public Integer getCustomerPropertyInt() {
+		return customerPropertyInt;
 	}
 }
