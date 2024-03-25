@@ -1,5 +1,7 @@
 package net.javaguides.springboot;
 
+import java.util.Collections;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,7 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Demo2Application {
 
 	public static void main(String[] args) {
-		var ctx = SpringApplication.run(Demo2Application.class, args);
+		var app = new SpringApplication(Demo2Application.class);
+		app.setDefaultProperties(Collections.singletonMap("spring.profile.active", "dev"));
+		var ctx = app.run(args);
 		
 		//MyFirstClass myFirstClass = ctx.getBean("mybean", MyFirstClass.class);'
 		MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
