@@ -9,8 +9,9 @@ public class Demo2Application {
 	public static void main(String[] args) {
 		var ctx = SpringApplication.run(Demo2Application.class, args);
 		
-		MyFirstClass myFirstClass = ctx.getBean("mybean", MyFirstClass.class);
-		System.out.println(myFirstClass.sayHello());
+		//MyFirstClass myFirstClass = ctx.getBean("mybean", MyFirstClass.class);'
+		MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
+		System.out.println(myFirstService.tellAStory());
 		SpringApplication.run(Demo2Application.class, args);
 	}
 
