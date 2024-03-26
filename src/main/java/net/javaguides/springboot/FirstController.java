@@ -31,7 +31,7 @@ public class FirstController {
 	
 
 	@GetMapping("/student/{student-id}")
-	public Student findStudentById(
+	public StudentResponseDto findStudentById(
 			@PathVariable("student-id") Integer id
 	) {
 		
@@ -39,13 +39,13 @@ public class FirstController {
 	}
 	
 	@GetMapping("/students")
-	public List<Student> findAllStudent() {
+	public List<StudentResponseDto> findAllStudent() {
 		
 		return this.studentService.findAllStudent();
 	}
 	
 	@GetMapping("/students/search/{student-name}")
-	public List<Student> findStudentByName(
+	public List<StudentResponseDto> findStudentByName(
 			@PathVariable("student-name") String name
 	) {
 		

@@ -2,6 +2,8 @@ package net.javaguides.springboot;
 
 import org.springframework.stereotype.Service;
 
+import net.javaguides.springboot.school.School;
+
 @Service
 public class StudentMapper {
 	public Student toStudent(StudentDto dto) {
