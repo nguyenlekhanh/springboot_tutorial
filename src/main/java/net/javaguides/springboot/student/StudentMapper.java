@@ -1,4 +1,4 @@
-package net.javaguides.springboot;
+package net.javaguides.springboot.student;
 
 import org.springframework.stereotype.Service;
 

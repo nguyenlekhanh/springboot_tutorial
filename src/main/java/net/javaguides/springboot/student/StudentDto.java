@@ -1,4 +1,6 @@
-package net.javaguides.springboot;
+package net.javaguides.springboot.student;
+
+import jakarta.validation.constraints.NotEmpty;
 
 public record StudentDto(
 		String firstName,

@@ -1,4 +1,4 @@
-package net.javaguides.springboot;
+package net.javaguides.springboot.school;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import net.javaguides.springboot.student.Student;
 
 @Entity
 public class School {
