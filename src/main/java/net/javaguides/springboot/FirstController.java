@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+import net.javaguides.springboot.student.StudentDto;
+import net.javaguides.springboot.student.StudentResponseDto;
+import net.javaguides.springboot.student.StudentService;
+
 @RestController
 public class FirstController {
 
@@ -24,7 +29,7 @@ public class FirstController {
 
 	@PostMapping("/student")
 	public StudentResponseDto saveStudent(
-			@RequestBody StudentDto studentDto
+			@Valid @RequestBody StudentDto studentDto
 	) {
 		return this.studentService.saveStudent(studentDto);
 	}
