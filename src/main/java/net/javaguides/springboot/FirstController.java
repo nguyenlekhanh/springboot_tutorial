@@ -16,56 +16,32 @@ import org.springframework.web.bind.annotation.RestController;
 public class FirstController {
 
 
-	private final StudentRepository repository;
+	private final StudentService studentService;
 	
-	public FirstController(StudentRepository repository) {
-		this.repository = repository;
+	public FirstController(StudentService studentService) {
+		this.studentService = studentService;
 	}
 
 	@PostMapping("/student")
-	public StudentResponseDto post(
+	public StudentResponseDto saveStudent(
 			@RequestBody StudentDto studentDto
 	) {
-		var student = toStudent(studentDto);
-		var savedStudent = repository.save(student);
-		return toStudentResponseDto(savedStudent);
+		return this.studentService.saveStudent(studentDto);
 	}
 	
-	private Student toStudent(StudentDto dto) {
-		var student = new Student();
-		student.setFirstName(dto.firstName());
-		student.setLastName(dto.lastName());
-		student.setEmail(dto.email());
-		student.setAge(dto.age());
-		
-		var school = new School();
-		school.setId(dto.schoolId());
-		
-		student.setSchool(school);
-		
-		return student;
-	}
-	
-	private StudentResponseDto toStudentResponseDto(Student student) {
-		return new StudentResponseDto(
-					student.getFirstName(),
-					student.getLastName(),
-					student.getEmail()
-				);
-	}
-	
+
 	@GetMapping("/student/{student-id}")
 	public Student findStudentById(
 			@PathVariable("student-id") Integer id
 	) {
 		
-		return repository.findById(id).orElse(null);
+		return this.studentService.findStudentById(id);
 	}
 	
 	@GetMapping("/students")
 	public List<Student> findAllStudent() {
 		
-		return repository.findAll();
+		return this.studentService.findAllStudent();
 	}
 	
 	@GetMapping("/students/search/{student-name}")
@@ -73,7 +49,7 @@ public class FirstController {
 			@PathVariable("student-name") String name
 	) {
 		
-		return repository.findAllByFirstNameContaining(name);
+		return this.studentService.findStudentByName(name);
 	}
 	
 	@DeleteMapping("/student/{student-id}")
@@ -81,6 +57,6 @@ public class FirstController {
 	public void deleteById(
 			@PathVariable("student-id") Integer id
 	) {
-		repository.deleteById(id);
+		this.studentService.deleteById(id);
 	}
 }
