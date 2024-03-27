@@ -5,6 +5,7 @@ import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -70,7 +71,7 @@ public class StudentServiceTest {
 		
 		//Mock the calls
 		Mockito.when(repository.findAll()).thenReturn(students);
-		Mockito.when(studentMapper.toStudentResponseDto((Student) any(Student.class)))
+		Mockito.when(studentMapper.toStudentResponseDto(Mockito.any(Student.class)))
 			.thenReturn(new StudentResponseDto(
 						"Test", "Test", "Test@mail.com"
 					));
@@ -80,5 +81,28 @@ public class StudentServiceTest {
 		
 		//Then
 		Assertions.assertEquals(students.size(), responseDto.size());
+	}
+	
+	@Test
+	public void should_return_student_by_id() {
+		//Given
+		Integer studentId = 1;
+		Student student = new Student("Test", "Test", "Test@mail.com", 5);
+		
+		//Mock the calls
+		Mockito.when(repository.findById(studentId))
+			.thenReturn(Optional.of(student));
+		Mockito.when(studentMapper.toStudentResponseDto(Mockito.any(Student.class)))
+			.thenReturn(new StudentResponseDto(
+						"Test", "Test", "Test@mail.com"
+					));
+		
+		//When
+		StudentResponseDto dto = studentService.findStudentById(studentId);
+		
+		//Then
+		Assertions.assertEquals(dto.firstName(), student.getFirstName());
+		Assertions.assertEquals(dto.lastName(), student.getLastName());
+		Assertions.assertEquals(dto.email(), student.getEmail());
 	}
 }
