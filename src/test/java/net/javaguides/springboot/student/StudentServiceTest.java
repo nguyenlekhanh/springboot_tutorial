@@ -104,5 +104,7 @@ public class StudentServiceTest {
 		Assertions.assertEquals(dto.firstName(), student.getFirstName());
 		Assertions.assertEquals(dto.lastName(), student.getLastName());
 		Assertions.assertEquals(dto.email(), student.getEmail());
+		
+		Mockito.verify(repository, Mockito.times(1)).findById(studentId);
 	}
 }
