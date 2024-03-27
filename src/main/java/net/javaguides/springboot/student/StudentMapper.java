@@ -7,6 +7,9 @@ import net.javaguides.springboot.school.School;
 @Service
 public class StudentMapper {
 	public Student toStudent(StudentDto dto) {
+		if(dto == null) {
+			throw new NullPointerException("The student is null");
+		}
 		var student = new Student();
 		student.setFirstName(dto.firstName());
 		student.setLastName(dto.lastName());
