@@ -1,6 +1,10 @@
 package net.javaguides.springboot.student;
 
+import static org.hamcrest.CoreMatchers.any;
 import static org.mockito.Mockito.verify;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,5 +60,25 @@ public class StudentServiceTest {
 		Mockito.verify(studentMapper, Mockito.times(1)).toStudentResponseDto(savedStudent);
 		
 		
+	}
+	
+	@Test
+	public void should_return_all_student() {
+		//Given
+		List<Student> students = new ArrayList<>();
+		students.add(new Student("Test", "Test", "Test@mail.com", 5));
+		
+		//Mock the calls
+		Mockito.when(repository.findAll()).thenReturn(students);
+		Mockito.when(studentMapper.toStudentResponseDto((Student) any(Student.class)))
+			.thenReturn(new StudentResponseDto(
+						"Test", "Test", "Test@mail.com"
+					));
+		
+		//When
+		List<StudentResponseDto> responseDto = studentService.findAllStudent();
+		
+		//Then
+		Assertions.assertEquals(students.size(), responseDto.size());
 	}
 }
