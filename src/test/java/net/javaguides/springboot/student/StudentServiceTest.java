@@ -1,5 +1,7 @@
 package net.javaguides.springboot.student;
 
+import static org.mockito.Mockito.verify;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,6 +50,11 @@ public class StudentServiceTest {
 		Assertions.assertEquals(dto.firstName(), responseDto.firstName());
 		Assertions.assertEquals(dto.lastName(), responseDto.lastName());
 		Assertions.assertEquals(dto.email(), responseDto.email());
+		
+		Mockito.verify(studentMapper, Mockito.times(1)).toStudent(dto);
+		Mockito.verify(repository, Mockito.times(1)).save(student);
+		Mockito.verify(studentMapper, Mockito.times(1)).toStudentResponseDto(savedStudent);
+		
 		
 	}
 }
